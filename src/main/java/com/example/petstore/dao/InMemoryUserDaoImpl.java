@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class UserDaoImpl implements UserDao {
+public class InMemoryUserDaoImpl implements UserDao {
     private final List<User> users = new ArrayList<>();
 
     @Override
@@ -26,12 +26,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void update(User user, String userName) {
-        for (User u : users) {
-            if(u.getUserName().equals(userName)){
-                users.set(users.indexOf(u), user);
-            }
-        }
+    public void update(User userForUpd, User newUser) {
+        users.set(users.indexOf(userForUpd), newUser);
     }
 
     @Override

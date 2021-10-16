@@ -16,14 +16,10 @@ import java.util.Objects;
 @NoArgsConstructor
 public class Pet {
     private long id;
-    @NotEmpty
-    @NotBlank(message = ErrorMessageManager.BLANK_FIELD_ERROR)
     private PetCategory petCategory;
     @NotBlank(message = ErrorMessageManager.BLANK_FIELD_ERROR)
     @Size(min = 3, max = 30, message = ErrorMessageManager.NAME_USER_ERROR)
     private String name;
-    @NotEmpty
-    @NotBlank(message = ErrorMessageManager.BLANK_FIELD_ERROR)
     private List<Tag> tags;
     private PetSaleStatus status;
 

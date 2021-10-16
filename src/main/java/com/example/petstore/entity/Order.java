@@ -1,9 +1,12 @@
 package com.example.petstore.entity;
 
+import com.example.petstore.utils.ErrorMessageManager;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -14,9 +17,9 @@ public class Order {
     private long id;
     private long petId;
     private int quantity;
-    private LocalDateTime localDateTime;
+    private LocalDateTime date;
     private OrderStatus status;
-    private String complete;
+    private boolean complete;
 
     @Override
     public boolean equals(Object o) {

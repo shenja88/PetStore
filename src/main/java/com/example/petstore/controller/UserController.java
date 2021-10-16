@@ -38,11 +38,11 @@ public class UserController {
     }
 
     @PutMapping("/{userName}")
-    public ResponseEntity<User> update(@PathVariable String userName) {
+    public ResponseEntity<User> update(@Valid @RequestBody User newUser, @PathVariable String userName) {
         Optional<User> userOptional = userService.getUser(userName);
         if (userOptional.isPresent()) {
-            User user = userOptional.get();
-            if (userService.updateUser(user, userName)) {
+            User userForUpd = userOptional.get();
+            if (userService.updateUser(userForUpd, newUser)) {
                 return ResponseEntity.status(HttpStatus.OK).build();
             }
         }

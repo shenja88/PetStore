@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class PetDaoImpl implements PetDao {
+public class InMemoryPetDaoImpl implements PetDao {
     private final List<Pet> pets = new ArrayList<>();
 
 

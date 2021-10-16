@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
-public class StoreDaoImpl implements StoreDao {
+public class InMemoryStoreDaoImpl implements StoreDao {
     private final List<Order> orders = new ArrayList<>();
 
     @Override
@@ -28,7 +28,7 @@ public class StoreDaoImpl implements StoreDao {
 
     @Override
     public Optional<Order> getOrderById(long orderId) {
-        return orders.stream().filter(ord -> ord.getPetId() == orderId).findFirst();
+        return orders.stream().filter(ord -> ord.getId() == orderId).findFirst();
     }
 
     @Override

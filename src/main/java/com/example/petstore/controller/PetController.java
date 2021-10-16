@@ -53,7 +53,7 @@ public class PetController {
     }
 
     @GetMapping("/findByStatus")
-    public ResponseEntity<List<Pet>> findByStatus(String status){
+    public ResponseEntity<List<Pet>> findByStatus(@RequestParam("status") String status){
         List<Pet> petList = petService.getAllByStatus(status);
         if(petList.isEmpty()){
             ResponseEntity.status(HttpStatus.NOT_FOUND).build();

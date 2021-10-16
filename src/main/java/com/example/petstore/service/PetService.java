@@ -16,7 +16,7 @@ public class PetService {
     private final PetDao petDao;
 
     public boolean addPet(Pet pet){
-        if(petDao.isExistById(pet.getId())){
+        if(!petDao.isExistById(pet.getId())){
             petDao.save(pet);
             return true;
         }

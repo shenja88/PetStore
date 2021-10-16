@@ -25,9 +25,9 @@ public class UserService {
         userDao.createWithList(userList);
     }
 
-    public boolean updateUser(User user, String userName) {
-        if (userDao.isExistByUserName(userName)) {
-            userDao.update(user, userName);
+    public boolean updateUser(User userForUpd, User newUser) {
+        if (userDao.isExistByUserName(userForUpd.getUserName())) {
+            userDao.update(userForUpd, newUser);
             return true;
         }
         return false;

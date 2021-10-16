@@ -20,7 +20,7 @@ public class StoreService {
     }
 
     public boolean addOrder(Order order) {
-        if (storeDao.isExistById(order.getId())) {
+        if (!storeDao.isExistById(order.getId())) {
             storeDao.addOrder(order);
             return true;
         }

@@ -19,10 +19,10 @@ public class PetStoreController {
     private final StoreService storeService;
 
     @GetMapping("/inventory")
-    public ResponseEntity<List<Order>> inventory(String status) {
+    public ResponseEntity<List<Order>> inventory(@RequestBody String status) {
         List<Order> orders = storeService.getAllByStatus(status);
         if (orders.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.status(HttpStatus.OK).body(orders);
     }
