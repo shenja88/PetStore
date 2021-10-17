@@ -1,7 +1,7 @@
 package com.example.petstore.controller;
 
 import com.example.petstore.entity.Pet;
-import com.example.petstore.service.PetService;
+import com.example.petstore.service_for_srpingDB.PetServ;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/pet")
 public class PetController {
-    private final PetService petService;
+    private final PetServ petService;
 
     @PostMapping("/addPet")
     public ResponseEntity<Pet> addPet(@Valid @RequestBody Pet pet) {
@@ -26,9 +26,9 @@ public class PetController {
         }
     }
 
-    @PutMapping("/addPet")
-    public ResponseEntity<Pet> update(@Valid @RequestBody Pet pet) {
-        if (petService.updatePet(pet, pet.getId())) {
+    @PutMapping("/addPet/{id}")
+    public ResponseEntity<Pet> update(@Valid @RequestBody Pet pet, @PathVariable long id) {
+        if (petService.updatePet(pet, id)) {
             return ResponseEntity.status(HttpStatus.OK).build();
         } else {
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
@@ -53,11 +53,11 @@ public class PetController {
     }
 
     @GetMapping("/findByStatus")
-    public ResponseEntity<List<Pet>> findByStatus(@RequestParam("status") String status){
+    public ResponseEntity<List<Pet>> findByStatus(@RequestBody String status){
         List<Pet> petList = petService.getAllByStatus(status);
         if(petList.isEmpty()){
-            ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        return ResponseEntity.status(HttpStatus.OK).body(petList);
     }
 }

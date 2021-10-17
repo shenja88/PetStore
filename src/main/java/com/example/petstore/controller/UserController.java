@@ -1,7 +1,7 @@
 package com.example.petstore.controller;
 
 import com.example.petstore.entity.User;
-import com.example.petstore.service.UserService;
+import com.example.petstore.service_for_srpingDB.UserServ;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import java.util.Optional;
 @RequestMapping("/user")
 @AllArgsConstructor
 public class UserController {
-    private final UserService userService;
+    private final UserServ userService;
 
     @PostMapping("/addUser")
     public ResponseEntity<User> addUser(@Valid @RequestBody User user) {

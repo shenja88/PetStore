@@ -1,4 +1,4 @@
-package com.example.petstore.service;
+package com.example.petstore.service_inMemory;
 
 import com.example.petstore.dao.UserDao;
 import com.example.petstore.entity.User;

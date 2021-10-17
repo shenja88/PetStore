@@ -1,21 +1,27 @@
 package com.example.petstore.entity;
 
 import com.example.petstore.utils.ErrorMessageManager;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
+@Entity(name = "tags")
 public class Tag {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private long id;
     @NotEmpty
     @NotBlank(message = ErrorMessageManager.BLANK_FIELD_ERROR)
+    @Size(min = 3, max = 12, message = ErrorMessageManager.SIZE_ERROR)
     private String name;
 
     @Override

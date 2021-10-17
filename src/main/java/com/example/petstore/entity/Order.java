@@ -1,23 +1,24 @@
 package com.example.petstore.entity;
 
-import com.example.petstore.utils.ErrorMessageManager;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import lombok.*;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity(name = "orders")
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private long id;
     private long petId;
     private int quantity;
     private LocalDateTime date;
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
     private boolean complete;
 

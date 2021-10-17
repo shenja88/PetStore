@@ -1,8 +1,7 @@
 package com.example.petstore.controller;
 
-
 import com.example.petstore.entity.Order;
-import com.example.petstore.service.StoreService;
+import com.example.petstore.service_for_srpingDB.StoreServ;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,7 @@ import java.util.Optional;
 @RequestMapping("/store")
 @AllArgsConstructor
 public class PetStoreController {
-    private final StoreService storeService;
+    private final StoreServ storeService;
 
     @GetMapping("/inventory")
     public ResponseEntity<List<Order>> inventory(@RequestBody String status) {
