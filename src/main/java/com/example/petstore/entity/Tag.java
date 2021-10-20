@@ -14,6 +14,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity(name = "tags")
+@Builder
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

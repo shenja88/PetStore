@@ -2,7 +2,7 @@ package com.example.petstore.service_for_srpingDB;
 
 import com.example.petstore.entity.Pet;
 import com.example.petstore.entity.PetSaleStatus;
-import com.example.petstore.repositiry.PetRepository;
+import com.example.petstore.repository.PetRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

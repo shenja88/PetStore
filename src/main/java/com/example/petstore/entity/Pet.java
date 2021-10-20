@@ -16,16 +16,18 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity(name = "pets")
+@Builder
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = true)
+    @Column(unique = true)
     private long id;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private PetCategory petCategory;
     @NotBlank(message = ErrorMessageManager.BLANK_FIELD_ERROR)
     @Size(min = 3, max = 30, message = ErrorMessageManager.NAME_USER_ERROR)
     private String name;
+    @Singular
     @OneToMany(targetEntity = Tag.class, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Tag> tags;
     private PetSaleStatus status;

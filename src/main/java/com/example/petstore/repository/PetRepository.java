@@ -1,4 +1,4 @@
-package com.example.petstore.repositiry;
+package com.example.petstore.repository;
 
 import com.example.petstore.entity.Pet;
 import com.example.petstore.entity.PetSaleStatus;

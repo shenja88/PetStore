@@ -1,7 +1,7 @@
 package com.example.petstore.service_for_srpingDB;
 
 import com.example.petstore.entity.User;
-import com.example.petstore.repositiry.UserRepository;
+import com.example.petstore.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

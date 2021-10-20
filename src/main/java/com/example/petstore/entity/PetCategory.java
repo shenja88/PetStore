@@ -13,6 +13,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity(name = "pet_categories")
+@Builder
 public class PetCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
