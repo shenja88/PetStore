@@ -1,7 +1,6 @@
 package com.example.petstore.repository;
 
 import com.example.petstore.entity.*;
-import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -33,6 +32,7 @@ public class UserRepositoryTest {
         users.add(User.builder().id(2).userName("John").firstName("Red").lastName("Lowson").email("sdsdfdbfs@mail.com").password("22222Aa").telephone("3262362646").status(0).build());
         users.add(User.builder().id(3).userName("Eugene").firstName("Dark").lastName("Smith").email("fdsbdfge@gmail.com").password("333333Aa").telephone("784343634").status(1).build());
         users.add(User.builder().id(4).userName("Mike").firstName("Blue").lastName("Jammerson").email("sgjgsg@gmail.com").password("44444Aa").telephone("354354326").status(0).build());
+        repository.saveAll(users);
     }
 
     @ParameterizedTest
@@ -43,36 +43,19 @@ public class UserRepositoryTest {
             "3, Mike"
     })
     public void addUser_and_findByUserNameTest(int idx, String userName) {
-        repository.save(users.get(idx));
         User userForCheck = repository.getByUserName(userName).get();
         assertEquals(users.get(idx).getUserName(), userForCheck.getUserName());
-    }
-
-    @Test
-    public void addUsersListTest_and_EqualsLists() {
-        repository.saveAll(users);
-        List<User> actualListUsers = new ArrayList<>();
-        for (User u : users) {
-            actualListUsers.add(repository.getById(u.getId()));
-        }
-        users.removeAll(actualListUsers);
-        boolean flag = users.isEmpty();
-        assertTrue(flag);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4})
     public void removeUser_and_isExistById_Test(int id){
-        repository.save(users.get(id - 1));
         repository.delete(users.get(id - 1));
         assertFalse(repository.existsById((long) id));
     }
 
     @Test
     public void updateUserTest(){
-        repository.save(users.get(0));
-        repository.save(users.get(3));
-
         users.get(3).setId(1);
         repository.save(users.get(3));
         assertEquals(users.get(0), repository.getById(users.get(3).getId()));
